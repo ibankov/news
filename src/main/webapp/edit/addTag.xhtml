@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<style>
+h2 {
+	font-family: courier new;
+}
+</style>
+</h:head>
+<h:body>
+	<p:messages id="mssgs" />
+	<h:messages id="messages" />
+	<h2>Page for adding tags.</h2>
+	<h:form>
+		<p:panel id="panel" header="Add Tags" style="width:280px">
+			<p:outputLabel value="Name: " style="font-weight:bold" />
+			<br />
+			<p:inputText value="#{tagsBean.tag.name}" />
+			<br />
+			<br />
+			<p:commandButton value="ADD" action="#{tagsBean.addTag()}" />
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

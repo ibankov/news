@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<p:messages id="mssgs" />
+	<h:messages id="messages" />
+	<h:form>
+		<h:dataTable value="#{controlBean.allNews}" var="news" border="1">
+			<f:facet name="header">
+				<h:outputText value="All News" />
+			</f:facet>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Title" />
+				</f:facet>
+				<h:link value="#{news.title}" outcome="selectedNew">
+					<f:param name="id" value="#{news.id}" />
+				</h:link>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:commandLink action="#{controlBean.sortByDate()}" value="Date">
+					</h:commandLink>
+				</f:facet>
+				<h:link value="#{news.date}" outcome="date">
+					<f:param name="id" value="#{news.id}" />
+				</h:link>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<style>
+h2 {
+	font-family: courier new;
+}
+</style>
+</h:head>
+<h:body>
+	<p:messages id="mssgs" />
+	<h:messages id="messages" />
+	<h2>Login</h2>
+	<h:form>
+		<p:panel id="login" header="Login" style="width: 300px">
+			<p:outputLabel value="Username" style="bold" />
+			<br />
+			<p:inputText id="username" value="#{loginBean.username}" />
+			<p:message for="username" />
+			<br />
+			<p:outputLabel value="Password" style="bold" />
+			<br />
+			<p:password id="password" value="#{loginBean.password}" />
+			<p:message for="password" />
+			<br />
+			<p:commandButton action="#{loginBean.login()}" value="Login"></p:commandButton>
+		</p:panel>
+	</h:form>
+	<!-- 	SECOND FORM -->
+	<!-- 	<form method="post" action="j_security_check"> -->
+	<!-- 		<p:panel id="login" header="Login" style="width: 300px"> -->
+	<!-- 			<p:outputLabel value="Username" style="bold" /><br/> -->
+	<!-- 			<input type="text" name="j_username" /> -->
+	<!-- 			<br /> -->
+	<!-- 			<p:outputLabel value="Password" style="bold" /><br/> -->
+	<!-- 			<input type="password" name="j_password" /><br/> -->
+	<!-- 			<br/> -->
+	<!-- 			<input type="submit" value="Login" /> -->
+	<!-- 		</p:panel> -->
+	<!-- 	</form> -->
+</h:body>
+</html>

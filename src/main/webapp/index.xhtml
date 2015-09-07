@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<style>
+h2 {
+	font-family: courier new;
+}
+</style>
+</h:head>
+<h:body>
+	<p:messages id="msgs" />
+	<h:messages id="messages" />
+	<h2>What do you want to do.</h2>
+	<h:form>
+		<p:panel style="width: 350px">
+			<h:commandButton value="Add News" action="#{controlBean.goToNews()}" />
+			<br />
+			<h:commandButton value="Add Tags" action="#{controlBean.goToTags()}" />
+			<br />
+			<h:commandButton value="View All News"
+				action="#{controlBean.goToAllNews()}" />
+			<br />
+			<p:calendar id="calendar" value="#{controlBean.date}"
+				pattern="dd MM yyyy"></p:calendar>
+			<h:commandButton value="View All News Since"
+				action="#{controlBean.goToAllNews(controlBean.date)}" />
+			<br />
+			<h:commandButton action="#{controlBean.goToRegister()}"
+				value="Register" />
+
+			<h:commandButton action="#{loginBean.logout()}" value="Logout"
+				rendered="#{not empty request.remoteUser}" />
+			<h:commandButton action="#{controlBean.goToLogin()}"
+				value="LoginPage" rendered="#{empty request.remoteUser}" />
+
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

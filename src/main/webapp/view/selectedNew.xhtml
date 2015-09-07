@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<p:messages id="mssgs" />
+	<h:messages id="messages" />
+	
+	<h2>Page for reviewing news.</h2>
+	<h:form>
+		<f:metadata>
+			<f:viewParam name="id" value="#{controlBean.id}" />
+		</f:metadata>
+		<h:panelGrid>
+			<h:outputLabel value="Title:" style="font-weight:bold" />
+			<h:outputText id="title" value="#{controlBean.getNews().title}"
+				label="Title">
+			</h:outputText>
+
+			<h:outputLabel value="Content: " style="font-weight:bold" />
+			<h:inputTextarea id="content"
+				value="#{controlBean.getNews().content}" label="Content">
+			</h:inputTextarea>
+
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

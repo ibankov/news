@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:messages id="messages" />
+	<style>
+h2 {
+	font-family: courier new;
+}
+</style>
+</h:head>
+<h:body>
+<h:messages id="messagssssses" />
+	<div id="div1" style="width: 320px; margin: 0 auto;">
+		<h2>Registering a new user</h2>
+		<h:form>
+			<p:panel id="panel" header="Register">
+				<p:messages id="messages" />
+				<p:outputLabel value="Username: " style="bold" />
+				<br />
+				<p:inputText id="username" value="#{userBean.user.username}"
+					required="true">
+					<f:validateLength minimum="5" maximum="15" />
+				</p:inputText>
+				<p:message for="username" display="icon" />
+				<br />
+				<p:outputLabel value="Password: " style="bold" />
+				<br />
+				<p:password id="password" value="#{userBean.user.password}"
+					required="true">
+					<f:validateLength minimum="6" maximum="20" />
+				</p:password>
+				<p:message for="password" display="icon" />
+				<br />
+				<p:outputLabel value="Confirm Password:  " style="bold" />
+				<br />
+				<p:password value="#{userBean.confirmPassword}" required="true">
+					<f:validateLength minimum="6" maximum="20" />
+				</p:password>
+				<p:message for="password" display="icon" />
+				<br />
+				<p:outputLabel value="Email: " style="bold" />
+				<br />
+				<p:inputText id="email" value="#{userBean.user.email}">
+					<f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
+				</p:inputText>
+				<p:message for="email" display="icon" />
+				<br />
+				<p:outputLabel for="role" value="User Role:" />
+				<br />
+				<p:selectManyMenu id="role" value="#{userBean.user.roles}"
+					style="width:125px" label="Select One" converter="#{roleConverter}">
+					<f:selectItems value="#{controlBean.allRoles()}" var="role"
+						itemLabel="#{role.name}" itemValue="#{role}" />
+				</p:selectManyMenu>
+				<br />
+				<br />
+				<p:commandButton value="Register" update="panel"
+					action="#{userBean.registerUser()}" icon="ui-icon-check"></p:commandButton>
+			</p:panel>
+		</h:form>
+	</div>
+</h:body>
+</html>
