@@ -46,7 +46,7 @@ public class ControlBean implements Serializable {
 	public void goToNews() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		try {
-			externalContext.redirect("edit/addNews.xhtml");
+			externalContext.redirect("/news/edit/addNews.xhtml");
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -56,7 +56,7 @@ public class ControlBean implements Serializable {
 	public void goToRegister() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		try {
-			externalContext.redirect("register.xhtml");
+			externalContext.redirect("/news/register.xhtml");
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -66,7 +66,7 @@ public class ControlBean implements Serializable {
 	public void goToLogin() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		try {
-			externalContext.redirect("login.xhtml");
+			externalContext.redirect("/news/login.xhtml");
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -76,7 +76,7 @@ public class ControlBean implements Serializable {
 	public void goToTags() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		try {
-			externalContext.redirect("edit/addTag.xhtml");
+			externalContext.redirect("/news/edit/addTag.xhtml");
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -87,14 +87,18 @@ public class ControlBean implements Serializable {
 		allNews = nf.getAllNews();
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		try {
-			externalContext.redirect("view/allNews.xhtml");
+			externalContext.redirect("/news/view/allNews.xhtml");
 		}
 		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void goToAllNews(Date date) {
+	public void seeAllNews(){
+		allNews = nf.getAllNews();
+	}
+	
+	public void seeAllNew(Date date){
 		Collection<News> allNewsTemp = nf.getAllNews();
 		DateFormat sdf = new SimpleDateFormat("dd MMM yyyy HH:mm");
 		allNews = new LinkedList<News>();
@@ -112,14 +116,34 @@ public class ControlBean implements Serializable {
 				allNews.add(news);
 			}
 		}
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		try {
-			externalContext.redirect("view/allNews.xhtml");
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
+	
+//	public void goToAllNews(Date date) {
+//		Collection<News> allNewsTemp = nf.getAllNews();
+//		DateFormat sdf = new SimpleDateFormat("dd MMM yyyy HH:mm");
+//		allNews = new LinkedList<News>();
+//		Date d1 = null;
+//		
+//		
+//		for (News news : allNewsTemp) {
+//			try {
+//				d1 = sdf.parse(news.getDate());
+//			}
+//			catch (ParseException e) {
+//				e.printStackTrace();
+//			}
+//			if(date.before(d1)){
+//				allNews.add(news);
+//			}
+//		}
+//		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+//		try {
+//			externalContext.redirect("view/allNews.xhtml");
+//		}
+//		catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	public void setNews(News news) {
 		this.news = news;

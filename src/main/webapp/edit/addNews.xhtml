@@ -4,53 +4,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-
-<h:head>
-	<style>
-h2 {
-	font-family: "courier new";
-}
-</style>
-</h:head>
 <h:body>
-	<p:messages id="mssgs" />
-	<h:messages id="messages" />
-	<div id="div1" style="width: 320px; margin: 0 auto;">
-		<h2>Page for adding news</h2>
-		<h:form>
-			<p:panel id="panel" header="Add News">
-				<p:outputLabel value="Title:" style="font-weight:bold" />
-				<br />
-				<p:inputText id="title" value="#{newsBean.news.title}" label="Title">
-					<f:validateLength minimum="3" maximum="20" />
-				</p:inputText>
-				<br />
-				<p:message for="title" style="color:red" />
+	<ui:composition template="/templates/template.xhtml">
 
-				<p:outputLabel value="Content: " style="font-weight:bold" />
-				<br />
-				<p:inputTextarea id="content" value="#{newsBean.news.content}"
-					label="Content">
-					<f:validateLength minimum="5" maximum="255" />
-				</p:inputTextarea>
-				<br />
-				<p:message for="content" style="color:red" />
+		<ui:define name="content">
+			<div id="div1" style="width: 320px; margin: 0 auto;">
+				<p:messages id="mssgs" />
+				<h:messages id="messages" />
+					<h2>Page for adding news</h2>
+					<h:form>
+						<p:panel id="panel" header="Add News">
+							<p:outputLabel value="Title:" style="font-weight:bold" />
+							<br />
+							<p:inputText id="title" value="#{newsBean.news.title}"
+								label="Title">
+								<f:validateLength minimum="3" maximum="20" />
+							</p:inputText>
+							<br />
+							<p:message for="title" style="color:red" />
 
-				<p:outputLabel value="Tags: " style="font-weight:bold" />
-				<br />
-				<h:selectManyListbox value="#{newsBean.news.tags}"
-					converter="#{tagsConverter}" size="7" style="width:150px">
-					<f:selectItems value="#{controlBean.allTags()}" var="tag"
-						itemLabel="#{tag.name}" itemValue="#{tag}" />
-				</h:selectManyListbox>
-				<br />
+							<p:outputLabel value="Content: " style="font-weight:bold" />
+							<br />
+							<p:inputTextarea id="content" value="#{newsBean.news.content}"
+								label="Content">
+								<f:validateLength minimum="5" maximum="255" />
+							</p:inputTextarea>
+							<br />
+							<p:message for="content" style="color:red" />
 
-				<p:commandButton value="ADD" update="panel" icon="ui-icon-check"
-					action="#{newsBean.addNews()}" />
-			</p:panel>
-		</h:form>
-	</div>
+							<p:outputLabel value="Tags: " style="font-weight:bold" />
+							<br />
+							<h:selectManyListbox value="#{newsBean.news.tags}"
+								converter="#{tagsConverter}" size="7" style="width:150px">
+								<f:selectItems value="#{controlBean.allTags()}" var="tag"
+									itemLabel="#{tag.name}" itemValue="#{tag}" />
+							</h:selectManyListbox>
+							<br />
+
+							<p:commandButton value="ADD" update="panel" icon="ui-icon-check"
+								action="#{newsBean.addNews()}" />
+						</p:panel>
+					</h:form>
+
+				</div>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

@@ -4,31 +4,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
-</h:head>
 <h:body>
-	<p:messages id="mssgs" />
-	<h:messages id="messages" />
-	
-	<h2>Page for reviewing news.</h2>
-	<h:form>
-		<f:metadata>
-			<f:viewParam name="id" value="#{controlBean.id}" />
-		</f:metadata>
-		<h:panelGrid>
-			<h:outputLabel value="Title:" style="font-weight:bold" />
-			<h:outputText id="title" value="#{controlBean.getNews().title}"
-				label="Title">
-			</h:outputText>
+	<ui:composition template="/templates/template.xhtml">
 
-			<h:outputLabel value="Content: " style="font-weight:bold" />
-			<h:inputTextarea id="content"
-				value="#{controlBean.getNews().content}" label="Content">
-			</h:inputTextarea>
+		<ui:define name="content">
+			<div id="div1" style="width: 320px; margin: 0 auto;">
+				<p:messages id="mssgs" />
+				<h:messages id="messages" />
 
-		</h:panelGrid>
-	</h:form>
+				<h2>Page for reviewing news.</h2>
+				<h:form>
+					<f:metadata>
+						<f:viewParam name="id" value="#{controlBean.id}" />
+					</f:metadata>
+					<h:panelGrid>
+						<h:outputLabel value="Title:" style="font-weight:bold" />
+						<h:outputText id="title" value="#{controlBean.getNews().title}"
+							label="Title">
+						</h:outputText>
+
+						<h:outputLabel value="Content: " style="font-weight:bold" />
+						<h:inputTextarea id="content"
+							value="#{controlBean.getNews().content}" label="Content">
+						</h:inputTextarea>
+
+					</h:panelGrid>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

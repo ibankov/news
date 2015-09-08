@@ -68,7 +68,7 @@ public class LoginBean implements Serializable {
 			
 			request.getSession(false).invalidate();
 			
-			return "logout";
+			return "index";
 			
 		}
 		catch (ServletException e) {
