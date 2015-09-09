@@ -17,7 +17,9 @@
 				<h2>Page for reviewing news.</h2>
 				<h:form>
 					<f:metadata>
-						<f:viewParam name="id" value="#{controlBean.id}" />
+						<f:viewParam name="id" value="#{controlBean.id}" required="true"
+							validator="#{idValidator.validate}"
+							validatorMessage="URL incoplete or invalid" />
 					</f:metadata>
 					<h:panelGrid>
 						<h:outputLabel value="Title:" style="font-weight:bold" />
@@ -27,13 +29,14 @@
 
 						<h:outputLabel value="Content: " style="font-weight:bold" />
 						<h:outputText id="content" value="#{controlBean.news.content}"
-							label="Content">
+							label="Content" rendered="#{!p:ifGranted('Editor')}">
 						</h:outputText>
-						<h:inputTextarea id="editContent" value="#{controlBean.news.content}"
-							label="Content" rendered="#{p:ifGranted('Editor')}">
-						</h:inputTextarea>
+						<p:inputTextarea id="editContent"
+							value="#{controlBean.news.content}" label="Content"
+							rendered="#{p:ifGranted('Editor')}" rows="5" cols="50">
+						</p:inputTextarea>
 						<h:commandButton action="#{controlBean.updateNews()}" value="Save"
-						rendered="#{p:ifGranted('Editor')}" />
+							rendered="#{p:ifGranted('Editor')}" />
 					</h:panelGrid>
 				</h:form>
 			</div>
