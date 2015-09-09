@@ -20,21 +20,15 @@ public class TagsBean implements Serializable {
 	private static final long serialVersionUID = -1503958244560243143L;
 	
 	private Tag tag = new Tag();
+	
 	@Inject
 	private TagFacade tf;
 	
 	public String addTag() {
-		ResourceBundle rbBundle = ResourceBundle.getBundle("SystemMessages",Locale.ENGLISH);
-
-		
+		ResourceBundle rbBundle = ResourceBundle.getBundle("SystemMessages", Locale.ENGLISH);
 		tf.create(tag);
-		
 		tag = new Tag();
-		
-		FacesContext.getCurrentInstance().addMessage(
-				null, new FacesMessage(FacesMessage.SEVERITY_INFO, rbBundle.getString("addTag"),
-						"success"));
-		
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, rbBundle.getString("addTag"), "success"));
 		return "index";
 	}
 	

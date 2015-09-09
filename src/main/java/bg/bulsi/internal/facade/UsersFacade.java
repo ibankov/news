@@ -1,5 +1,7 @@
 package bg.bulsi.internal.facade;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,8 +26,12 @@ public class UsersFacade {
 		em.remove(em.merge(entity));
 	}
 	
+	@SuppressWarnings("unchecked")
 	public User getUserByUsername(String username) {
-		return (User) em.createNamedQuery("User.findByUsername").setParameter("username", username).getResultList().get(0);
+		List<User> users = em.createNamedQuery("User.findByUsername")
+							 .setParameter("username", username)
+							 .getResultList();
+		return users.size() == 0 ? null : users.get(0);
 	}
 	
 }

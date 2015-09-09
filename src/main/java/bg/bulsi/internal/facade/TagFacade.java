@@ -15,35 +15,25 @@ public class TagFacade {
 	@PersistenceContext(unitName = "jpa-example")
 	EntityManager em;
 	
-	public TagFacade() {
-		
-	}
-	
-	private EntityManager getEntityManager() {
-		return em;
-	}
-	
 	public void create(Tag entity) {
-		getEntityManager().persist(entity);
+		em.persist(entity);
 	}
 	
 	public void edit(Tag entity) {
-		getEntityManager().merge(entity);
+		em.merge(entity);
 	}
 	
 	public void remove(Tag entity) {
-		getEntityManager().remove(getEntityManager().merge(entity));
+		em.remove(em.merge(entity));
 	}
 	
 	@SuppressWarnings("unchecked")
 	public Collection<Tag> getAllTags() {
 		Query query = em.createNamedQuery("Tags.selectAll");
-		Collection<Tag> resultList = (Collection<Tag>) query.getResultList();
-		return resultList;
+		return (Collection<Tag>) query.getResultList();
 	}
-
+	
 	public Tag find(int valueOf) {
-		Tag tag = getEntityManager().find(Tag.class,valueOf );
-		return tag;
+		return em.find(Tag.class, valueOf);
 	}
 }

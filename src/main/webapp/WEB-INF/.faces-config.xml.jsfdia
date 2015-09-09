@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
  <PROCESS-ITEM NAME="rules:#index.xhtml" PATH="/index.xhtml"
-  SHAPE="280,192,50,25" model-entity="JSFProcessGroup" persistent="true"/>
+  SHAPE="448,232,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#index.xhtml:0" NAME="item"
+   PATH="/index.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="index::#index.xhtml" NAME="output"
+    PATH="/index.xhtml" TARGET="rules:#index.xhtml" TITLE="index" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#register.xhtml" PATH="/register.xhtml"
-  SHAPE="40,144,50,41" model-entity="JSFProcessGroup">
+  SHAPE="32,136,50,41" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#register.xhtml:0" NAME="item"
    PATH="/register.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="index::#index.xhtml" NAME="output"
@@ -11,7 +17,7 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#edit#addTag.xhtml" PATH="/edit/addTag.xhtml"
-  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  SHAPE="232,24,50,41" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#edit#addTag.xhtml:0" NAME="item"
    PATH="/edit/addTag.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="index::#index.xhtml" NAME="output"
@@ -19,7 +25,7 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#edit#addNews.xhtml"
-  PATH="/edit/addNews.xhtml" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  PATH="/edit/addNews.xhtml" SHAPE="232,104,50,41" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#edit#addNews.xhtml:0" NAME="item"
    PATH="/edit/addNews.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="index::#index.xhtml" NAME="output"
@@ -27,9 +33,33 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#templates#header.xhtml"
-  PATH="/templates/header.xhtml" SHAPE="66,356,0,0" model-entity="JSFProcessGroup">
+  PATH="/templates/header.xhtml" SHAPE="32,224,50,41" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#templates#header.xhtml:0" NAME="item"
    PATH="/templates/header.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="index::#index.xhtml" NAME="output"
+    PATH="/index.xhtml" TARGET="rules:#index.xhtml" TITLE="index" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="32,64,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="index::#index.xhtml" NAME="output"
+    PATH="/index.xhtml" TARGET="rules:#index.xhtml" TITLE="index" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#view#selectedNew.xhtml"
+  PATH="/view/selectedNew.xhtml" SHAPE="144,440,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#view#selectedNew.xhtml:0" NAME="item"
+   PATH="/view/selectedNew.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="index::#index.xhtml" NAME="output"
+    PATH="/index.xhtml" TARGET="rules:#index.xhtml" TITLE="index" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#view#allNews.xhtml"
+  PATH="/view/allNews.xhtml" SHAPE="144,344,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#view#allNews.xhtml:0" NAME="item"
+   PATH="/view/allNews.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="index::#index.xhtml" NAME="output"
     PATH="/index.xhtml" TARGET="rules:#index.xhtml" TITLE="index" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>

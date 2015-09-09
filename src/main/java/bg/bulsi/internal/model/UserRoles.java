@@ -12,9 +12,11 @@ import javax.persistence.Table;
 @Table(name="UserRoles")
 @NamedQueries({ @NamedQuery(name = "Roles.selectAll", query = "SELECT r FROM UserRoles r") })
 public class UserRoles {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	private String name;
 	
 	public UserRoles(){

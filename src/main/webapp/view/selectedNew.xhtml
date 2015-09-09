@@ -13,7 +13,6 @@
 		<ui:define name="content">
 			<div id="div1" style="width: 320px; margin: 0 auto;">
 				<p:messages id="mssgs" />
-				<h:messages id="messages" />
 
 				<h2>Page for reviewing news.</h2>
 				<h:form>
@@ -22,15 +21,19 @@
 					</f:metadata>
 					<h:panelGrid>
 						<h:outputLabel value="Title:" style="font-weight:bold" />
-						<h:outputText id="title" value="#{controlBean.getNews().title}"
+						<h:outputText id="title" value="#{controlBean.news.title}"
 							label="Title">
 						</h:outputText>
 
 						<h:outputLabel value="Content: " style="font-weight:bold" />
-						<h:inputTextarea id="content"
-							value="#{controlBean.getNews().content}" label="Content">
+						<h:outputText id="content" value="#{controlBean.news.content}"
+							label="Content">
+						</h:outputText>
+						<h:inputTextarea id="editContent" value="#{controlBean.news.content}"
+							label="Content" rendered="#{p:ifGranted('Editor')}">
 						</h:inputTextarea>
-
+						<h:commandButton action="#{controlBean.updateNews()}" value="Save"
+						rendered="#{p:ifGranted('Editor')}" />
 					</h:panelGrid>
 				</h:form>
 			</div>

@@ -1,6 +1,5 @@
 package bg.bulsi.internal.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -17,17 +16,20 @@ import javax.persistence.Table;
 @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username=:username")
 public class User {
 	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	@Column(unique = true)
 	private String username;
+	
 	private String password;
+	
 	@Column(unique = true)
 	private String email;
+	
 	@ManyToMany
-	private List<UserRoles> roles = new ArrayList<UserRoles>();
+	private List<UserRoles> roles;
 
 	public List<UserRoles> getRoles() {
 		return roles;

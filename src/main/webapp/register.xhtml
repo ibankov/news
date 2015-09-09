@@ -8,7 +8,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:body>
-	<h:messages id="messagssssses" />
+<!-- 	<h:messages id="messagssssses" /> -->
 	<ui:composition template="templates/template.xhtml">
 
 		<ui:define name="content">
@@ -53,7 +53,7 @@
 						<p:selectManyMenu id="role" value="#{userBean.user.roles}"
 							style="width:125px" label="Select One"
 							converter="#{roleConverter}">
-							<f:selectItems value="#{controlBean.allRoles()}" var="role"
+							<f:selectItems value="#{userBean.allRoles}" var="role"
 								itemLabel="#{role.name}" itemValue="#{role}" />
 						</p:selectManyMenu>
 						<br />

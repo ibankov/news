@@ -1,7 +1,7 @@
 package bg.bulsi.internal.facade;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Date;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -33,15 +33,21 @@ public class NewsFacade {
 	}
 	
 	public News find(int valueOf){
-		News result = em.find(News.class, valueOf);
-		return result;
+		return em.find(News.class, valueOf);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Collection<News> filterNews(Date date){
+		Query query = em.createNamedQuery("News.selectBefore");
+		query.setParameter("date", date);
+		
+		return query.getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public Collection<News> getAllNews() {
 		Query query = em.createNamedQuery("News.selectAll");
-		List<News> resultList = query.getResultList();
-		return resultList;
+		return query.getResultList();
 	}
 	
 }

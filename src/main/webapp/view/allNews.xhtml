@@ -11,42 +11,37 @@
 	<ui:composition template="/templates/template.xhtml">
 
 		<ui:define name="content">
-		<div id="div1" style="width: 320px; margin: 0 auto;">
-			<p:messages id="mssgs" />
-			<h:messages id="messages" />
-			<h:form>
-				<br />
-				<p:calendar id="calendar" value="#{controlBean.date}"
-					pattern="dd MM yyyy"></p:calendar>
-				<h:commandButton value="View All News Since"
-					action="#{controlBean.seeAllNew(controlBean.date)}" />
-				<br />
-				<h:commandButton value="View All News"
-					action="#{controlBean.seeAllNews()}" />
-				<br />
-				<h:dataTable value="#{controlBean.allNews}" var="news" border="1">
-					<f:facet name="header">
-						<h:outputText value="All News" />
-					</f:facet>
-					<h:column>
+			<div id="div1" style="width: 320px; margin: 0 auto;">
+				<p:messages id="mssgs" />
+				<h:form>
+					<p:dataTable value="#{controlBean.allNews}" var="news" border="1">
 						<f:facet name="header">
-							<h:outputText value="Title" />
+							<h:outputText value="All News" />
 						</f:facet>
-						<h:link value="#{news.title}" outcome="selectedNew">
-							<f:param name="id" value="#{news.id}" />
-						</h:link>
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:commandLink action="#{controlBean.sortByDate()}" value="Date">
-							</h:commandLink>
-						</f:facet>
-						<h:link value="#{news.date}" outcome="date">
-							<f:param name="id" value="#{news.id}" />
-						</h:link>
-					</h:column>
-				</h:dataTable>
-			</h:form>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Title" />
+							</f:facet>
+							<h:link value="#{news.title}" outcome="selectedNew">
+								<f:param name="id" value="#{news.id}" />
+							</h:link>
+						</p:column>
+						<p:column headerText="Date" sortBy="#{news.date}">
+							<h:link value="#{news.date}">
+								<f:param name="id" value="#{news.id}" />
+							</h:link>
+						</p:column>
+					</p:dataTable>
+					<br />
+					<p:calendar id="calendar" value="#{controlBean.date}"
+						pattern="dd MM yyyy"></p:calendar>
+					<h:commandButton value="View All News Since"
+						action="#{controlBean.filter()}" />
+					<br />
+					<h:commandButton value="View All News"
+						action="#{controlBean.seeAllNews()}" />
+					<br />
+				</h:form>
 			</div>
 		</ui:define>
 	</ui:composition>

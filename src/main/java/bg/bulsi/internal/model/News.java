@@ -1,5 +1,6 @@
 package bg.bulsi.internal.model;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,23 +16,29 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "News")
-@NamedQueries({ @NamedQuery(name = "News.selectAll", query = "SELECT n FROM News n") })
+@NamedQueries({
+	@NamedQuery(name = "News.selectAll", query = "SELECT n FROM News n"),
+	@NamedQuery(name = "News.selectBefore", query = "SELECT n FROM News n WHERE n.date > :date")})
 public class News {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	private String title;
+	
 	private String content;
-	private String date;
+	
+	private Date date;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Tag> tags =  new LinkedList<Tag>();
+	private List<Tag> tags;
 	
 	public News() {
 		
 	}
 	
-	public News(String title, String content, String date, LinkedList<Tag> tags) {
+	public News(String title, String content, Date date, LinkedList<Tag> tags) {
 		this.title = title;
 		this.content = content;
 		this.date = date;
@@ -54,7 +61,7 @@ public class News {
 		this.content = content;
 	}
 	
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 		
@@ -66,7 +73,7 @@ public class News {
 		return content;
 	}
 	
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 	
@@ -119,7 +126,5 @@ public class News {
 		else if (!title.equals(other.title))
 			return false;
 		return true;
-	}
-	
-	
+	}	
 }

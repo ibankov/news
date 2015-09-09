@@ -28,15 +28,13 @@ public class RolesFacade {
 	}
 	
 	public UserRoles find(int valueOf) {
-		UserRoles role = em.find(UserRoles.class,valueOf );
-		return role;
+		return em.find(UserRoles.class, valueOf);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public Collection<UserRoles> getAllRoles() {
 		Query query = em.createNamedQuery("Roles.selectAll");
-		Collection<UserRoles> resultList = (Collection<UserRoles>) query.getResultList();
-		return resultList;
+		return (Collection<UserRoles>) query.getResultList();
 	}
 
 }
