@@ -27,8 +27,8 @@
 							</h:link>
 						</p:column>
 						<p:column headerText="Date" sortBy="#{news.date}">
-							<h:link value="#{news.date}">
-								<f:param name="id" value="#{news.id}" />
+							<h:link value="#{news.date}" disabled="true">
+								<f:param name="id" value="#{news.id}"/>
 							</h:link>
 						</p:column>
 					</p:dataTable>
