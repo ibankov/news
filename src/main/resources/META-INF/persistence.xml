@@ -10,6 +10,8 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 		<jta-data-source>java:jboss/datasources/dsNews</jta-data-source>
 		<class>bg.bulsi.internal.model.News</class>
 		<class>bg.bulsi.internal.model.Tag</class>
+		<class>bg.bulsi.internal.model.User</class>
+		<class>bg.bulsi.internal.model.UserRoles</class>
 		<properties>
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
