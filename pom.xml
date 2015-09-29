@@ -21,6 +21,10 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+					<goals>
+						<goal>integration-test</goal>
+						<goal>verify</goal>
+					</goals>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -39,13 +43,21 @@
 						</configuration>
 					</execution>
 					<execution>
+						<id>test</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+						<inherited>false</inherited>
+						<configuration>
+							<force>true</force>
+						</configuration>
+					</execution>
+					<execution>
 						<phase>install</phase>
 						<goals>
 							<goal>deploy</goal>
 						</goals>
-						<configuration>
-							<force>true</force>
-						</configuration>
 					</execution>
 				</executions>
 				<configuration>
@@ -56,7 +68,55 @@
 					<password>buls1virtu@l</password>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>selenium-maven-plugin</artifactId>
+				<version>2.1</version>
+				<executions>
+					<execution>
+						<id>start_selenium</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start-server</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop_selenium</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop-server</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<port>4448</port>
+					<background>true</background>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.18.1</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<skip>true</skip>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<skip>false</skip>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
+
 	</build>
 
 	<dependencies>
@@ -87,6 +147,7 @@
 			<version>2.0.0-b10</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>javax.ejb</groupId>
 			<artifactId>ejb-api</artifactId>
@@ -118,13 +179,60 @@
 			<artifactId>primefaces</artifactId>
 			<version>5.2</version>
 		</dependency>
-		<dependency>  
-            <groupId>javax</groupId>  
-            <artifactId>javaee-web-api</artifactId>  
-            <version>6.0</version>  
-            <scope>provided</scope>  
-        </dependency>  
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
 
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.1.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.12</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium.client-drivers</groupId>
+			<artifactId>selenium-java-client-driver</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-server</artifactId>
+			<version>2.47.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>2.47.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-api</artifactId>
+			<version>2.47.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-common</artifactId>
+			<version>2.0b1</version>
+		</dependency>
+		<dependency>
+			<groupId>ru.stqa.selenium</groupId>
+			<artifactId>webdriver-factory</artifactId>
+			<version>1.1.46</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -138,8 +246,104 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<profiles>
+		<profile>
+			<id>firefox</id>
+			<properties>
+				<capabilities>/firefox.capabilities</capabilities>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>chrome</id>
+			<properties>
+				<capabilities>/chrome.capabilities</capabilities>
+			</properties>
+		</profile>
+		<profile>
+			<id>ie</id>
+			<properties>
+				<capabilities>/ie.capabilities</capabilities>
+			</properties>
+		</profile>
+		<profile>
+			<id>safari</id>
+			<properties>
+				<capabilities>/safari.capabilities</capabilities>
+			</properties>
+		</profile>
+		<profile>
+			<id>phantomjs</id>
+			<properties>
+				<capabilities>/phantomjs.capabilities</capabilities>
+			</properties>
+		</profile>
+		<profile>
+			<id>opera</id>
+			<properties>
+				<capabilities>/opera.capabilities</capabilities>
+			</properties>
+		</profile>
+		<profile>
+			<id>htmlunit</id>
+			<properties>
+				<capabilities>/htmlunit.capabilities</capabilities>
+			</properties>
+		</profile>
+		<!-- environments -->
+		<profile>
+			<id>localhost</id>
+			<properties>
+				<site.url>http://localhost:8080/</site.url>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>devhost</id>
+			<properties>
+				<site.url>http://devhost/</site.url>
+			</properties>
+		</profile>
+		<profile>
+			<id>testhost</id>
+			<properties>
+				<site.url>http://testhost/</site.url>
+			</properties>
+		</profile>
+		<profile>
+			<id>prodhost</id>
+			<properties>
+				<site.url>http://prodhost.com/</site.url>
+			</properties>
+		</profile>
+		<!-- grid -->
+		<profile>
+			<id>nogrid</id>
+			<properties>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>grid</id>
+			<properties>
+				<grid.url>http://localhost:4444/wd/hub/</grid.url>
+			</properties>
+		</profile>
+	</profiles>
+
 
 	<repositories>
+		<repository>
+			<id>openqa-release-repo</id>
+			<name>OpenQA Repository with stable releases</name>
+			<url>http://nexus.openqa.org/content/repositories/releases</url>
+		</repository>
 		<repository>
 			<id>snapshots-repo</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
@@ -165,4 +369,5 @@
 			</snapshots>
 		</repository>
 	</repositories>
+
 </project>

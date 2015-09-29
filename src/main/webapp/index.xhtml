@@ -1,49 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:body>
-
-	<ui:composition template="templates/template.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="templates/template.xhtml">
 
 		<ui:define name="content">
 			<div id="div1" style="width: 320px; margin: 0 auto;">
 				<p:messages id="msgs" />
-<!-- 				<h:messages id="messages" /> -->
 				<h2>Welcome to News Sample</h2>
-				<!-- 			<h:form> -->
-				<!-- 				<p:panel style="width: 350px"> -->
-				<!-- 					<h:commandButton value="Add News" -->
-				<!-- 						action="#{controlBean.goToNews()}" /> -->
-				<!-- 					<br /> -->
-				<!-- 					<h:commandButton value="Add Tags" -->
-				<!-- 						action="#{controlBean.goToTags()}" /> -->
-				<!-- 					<br /> -->
-				<!-- 					<h:commandButton value="View All News" -->
-				<!-- 						action="#{controlBean.goToAllNews()}" /> -->
-				<!-- 					<br /> -->
-				<!-- 					<p:calendar id="calendar" value="#{controlBean.date}" -->
-				<!-- 						pattern="dd MM yyyy"></p:calendar> -->
-				<!-- 					<h:commandButton value="View All News Since" -->
-				<!-- 						action="#{controlBean.goToAllNews(controlBean.date)}" /> -->
-				<!-- 					<br /> -->
-				<!-- 					<h:commandButton action="#{controlBean.goToRegister()}" -->
-				<!-- 						value="Register" /> -->
-
-				<!-- 					<h:commandButton action="#{loginBean.logout()}" value="Logout" -->
-				<!-- 						rendered="#{not empty request.remoteUser}" /> -->
-				<!-- 					<h:commandButton action="#{controlBean.goToLogin()}" -->
-				<!-- 						value="LoginPage" rendered="#{empty request.remoteUser}" /> -->
-				<!-- 				</p:panel> -->
-				<!-- 			</h:form> -->
 			</div>
 		</ui:define>
 	</ui:composition>
 
-</h:body>
-
-</html>

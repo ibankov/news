@@ -14,7 +14,7 @@ import bg.bulsi.internal.model.News;
 public class NewsFacade {
 	
 	@PersistenceContext(unitName = "jpa-example")
-	EntityManager em;
+	private EntityManager em;
 	
 	public NewsFacade() {
 		
