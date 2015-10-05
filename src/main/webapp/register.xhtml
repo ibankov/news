@@ -44,8 +44,7 @@
 						<p:outputLabel for="role" value="User Role:" />
 						<br />
 						<p:selectManyMenu id="role" value="#{userBean.user.roles}"
-							style="width:125px" label="Select One"
-							converter="#{roleConverter}">
+							style="width:125px; margin:0 auto"	converter="#{roleConverter}">
 							<f:selectItems value="#{userBean.allRoles}" var="role"
 								itemLabel="#{role.name}" itemValue="#{role}" />
 						</p:selectManyMenu>
