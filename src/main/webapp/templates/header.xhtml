@@ -12,14 +12,16 @@
 			<p:menuitem value="Home" url="/index.xhtml">
 					<f:param name="i" value="0" />
 				</p:menuitem>
-				<p:menuitem value="Add News" url="/edit/addNews.xhtml">
+				<p:menuitem value="Add News" url="/edit/addNews.xhtml" 
+				rendered="#{p:ifGranted('Editor') or p:ifGranted('Admin')}">
 					<f:param name="i" value="1" />
 				</p:menuitem>
-				<p:menuitem value="Add Tags" url="/edit/addTag.xhtml">
+				<p:menuitem value="Add Tags" url="/edit/addTag.xhtml"
+				rendered="#{p:ifGranted('Editor') or p:ifGranted('Admin')}">
 					<f:param name="i" value="2" />
 				</p:menuitem>
 				<p:menuitem value="View All News"
-					url="/view/allNews.xhtml">
+					url="/view/allNews.xhtml" rendered="#{not empty request.remoteUser}">
 					<f:param name="i" value="3" />
 				</p:menuitem>
 				<p:menuitem value="Register" url="/register.xhtml"
