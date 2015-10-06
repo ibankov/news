@@ -7,10 +7,10 @@ import org.openqa.selenium.WebElement;
 
 public class LoginPage extends Page {
 
-	By containerLocator = By.id("j_idt28");
-	By usernameLocator = By.xpath(".//*[@id='j_idt28:username']");
-	By passwordLocator = By.xpath(".//*[@id='j_idt28:password']");
-	By loginButtonLocator = By.xpath(".//*[@id='j_idt28:j_idt37']");
+	By containerLocator = By.id("j_idt26");
+	By usernameLocator = By.id("j_idt26:username");
+	By passwordLocator = By.id("j_idt26:password");
+	By loginButtonLocator = By.id("j_idt26:j_idt35");
 
 	public LoginPage(WebDriver driver) {
 		super(driver);

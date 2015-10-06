@@ -15,7 +15,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class SeleniumNGTest {
+public class FirefoxTestNG {
 	
 	protected static String gridHubUrl;
 	protected static String baseUrl;

@@ -28,7 +28,7 @@
 					rendered="#{empty request.remoteUser}">
 					<f:param name="i" value="4" />
 				</p:menuitem>
-				<p:menuitem value="Login" url="/login.xhtml"
+				<p:menuitem id="login" value="Login" url="/login.xhtml"
 					rendered="#{empty request.remoteUser}">
 					<f:param name="i" value="5" />
 				</p:menuitem>
@@ -36,7 +36,7 @@
 					rendered="#{not empty request.remoteUser}">
 					<f:param name="i" value="6" />
 				</p:menuitem>
-				<p:menuitem value="User:#{request.remoteUser}"
+				<p:menuitem id="user" value="User:#{request.remoteUser}"
 					rendered="#{not empty request.remoteUser}">
 					<f:param name="i" value="7" />
 				</p:menuitem>

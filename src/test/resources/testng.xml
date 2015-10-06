@@ -3,7 +3,8 @@
 <suite name="Suite">
 	<test name="Test">
 		<classes>
-			<class name="news.ui.SeleniumNGTest" />
+			<class name="news.ui.FirefoxTestNG" />
+			<class name="news.ui.ChromeTestNG" />
 		</classes>
 	</test> <!-- Test -->
 	<listeners>
