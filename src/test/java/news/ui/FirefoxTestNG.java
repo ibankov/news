@@ -1,14 +1,17 @@
 package news.ui;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import news.ui.pages.HomePage;
 import news.ui.pages.LoginPage;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -19,7 +22,7 @@ public class FirefoxTestNG {
 	
 	protected static String gridHubUrl;
 	protected static String baseUrl;
-	protected static Capabilities capabilities;
+	protected static DesiredCapabilities capabilities;
 	
 	private WebDriver browser;
 	private HomePage homePage;
@@ -67,18 +70,35 @@ public class FirefoxTestNG {
 		Assert.assertEquals(1, 2);
 	}
 	
-	@BeforeClass(alwaysRun = true)
+	@BeforeClass(alwaysRun = true, groups = {"local"})
 	public void setupBeforeSuite(ITestContext context) {
 		baseUrl = "http://localhost:8080/";
 		
 		try {
 			
 			browser = new FirefoxDriver();
-			browser.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			browser.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		}
 		catch (Exception e) {
 			throw new IllegalStateException("Can't start Web Driver", e);
 		}
+	}
+	
+	@BeforeClass(alwaysRun = true, groups = {"remote"})
+	public void setupBeforeSuiteRemote(ITestContext context) {
+		capabilities = DesiredCapabilities.firefox();
+		capabilities.setJavascriptEnabled(true);
+		baseUrl = "http://10.10.0.112:8080/";
+		URL url = null;
+		try {	
+			url = new URL("http", "10.10.0.126", 4444, "/wd/hub");
+		}
+		catch (MalformedURLException e) {
+			e.printStackTrace();
+		} 
+		
+		browser = new RemoteWebDriver(url, capabilities);
+		browser.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	}
 	
 	@AfterClass
