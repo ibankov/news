@@ -65,16 +65,16 @@ public class ChromeTestNG {
 		Assert.assertEquals(1, 2);
 	}
 	
-	@BeforeClass(alwaysRun = true,groups = {"local"})
-	public void setupBeforeSuite(ITestContext context) {
-		baseUrl = "http://localhost:8080/";
-		browser = new ChromeDriver();
-		
-	}
+//	@BeforeClass(alwaysRun = true,groups = {"local"})
+//	public void setupBeforeSuite(ITestContext context) {
+//		baseUrl = "http://localhost:8080/";
+//		browser = new ChromeDriver();
+//		
+//	}
 	
 	@BeforeClass(alwaysRun = true,groups = {"remote"})
 	public void setupBeforeSuiteRemote(ITestContext context) {
-		capabilities = DesiredCapabilities.internetExplorer();
+		capabilities = DesiredCapabilities.chrome();
 		capabilities.setJavascriptEnabled(true);
 		baseUrl = "http://10.10.0.112:8080/";
 		URL url = null;

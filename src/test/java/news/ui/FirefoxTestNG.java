@@ -70,20 +70,20 @@ public class FirefoxTestNG {
 		Assert.assertEquals(1, 2);
 	}
 	
-	@BeforeClass(alwaysRun = true, groups = {"local"})
-	public void setupBeforeSuite(ITestContext context) {
-		baseUrl = "http://localhost:8080/";
-		
-		try {
-			
-			browser = new FirefoxDriver();
-			browser.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		}
-		catch (Exception e) {
-			throw new IllegalStateException("Can't start Web Driver", e);
-		}
-	}
-	
+//	@BeforeClass(alwaysRun = true, groups = {"local"})
+//	public void setupBeforeSuite(ITestContext context) {
+//		baseUrl = "http://localhost:8080/";
+//		
+//		try {
+//			
+//			browser = new FirefoxDriver();
+//			browser.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+//		}
+//		catch (Exception e) {
+//			throw new IllegalStateException("Can't start Web Driver", e);
+//		}
+//	}
+//	
 	@BeforeClass(alwaysRun = true, groups = {"remote"})
 	public void setupBeforeSuiteRemote(ITestContext context) {
 		capabilities = DesiredCapabilities.firefox();
