@@ -59,19 +59,19 @@ public class InternetExplorerTestNG {
 		Assert.assertEquals(browser.getCurrentUrl(), homePage.getUrl());
 	}
 	
-	@Test(description = "Failing test", groups = {"fail"})
+	@Test(description = "Failing test", groups = {"failIE"})
 	public void failTest() {
 		
 		Assert.assertEquals(1, 2);
 	}
 	
-	@Test(description = "Skipped test" ,dependsOnGroups = {"fail"} )
+	@Test(description = "Skipped test" ,dependsOnGroups = {"failIE"},groups = {"remote"} )
 	public void skipTest() {
 		
 		Assert.assertEquals(1, 2);
 	}
 	
-	@BeforeClass(alwaysRun = true ,groups = {"remote"})
+	@BeforeClass(groups = {"remoteIE"})
 	public void setupBeforeSuite(ITestContext context) {
 		capabilities = DesiredCapabilities.internetExplorer();
 		capabilities.setJavascriptEnabled(true);

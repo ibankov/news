@@ -2,6 +2,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
 	<test name="Test">
+		<groups>
+			<run>
+				<exclude name="remoteFireFox"></exclude>
+				<exclude name="remoteChrome"></exclude>
+				<exclude name="remoteIE"></exclude>
+			</run>
+		</groups>
 		<classes>
 			<class name="news.ui.FirefoxTestNG" />
 			<class name="news.ui.ChromeTestNG" />

@@ -58,33 +58,33 @@ public class FirefoxTestNG {
 		Assert.assertEquals(browser.getCurrentUrl(), homePage.getUrl());
 	}
 	
-	@Test(description = "Failing test", groups = {"fail"})
+	@Test(description = "Failing test", groups = {"failFireFox"})
 	public void failTest() {
 		
 		Assert.assertEquals(1, 2);
 	}
 	
-	@Test(description = "Skipped test" ,dependsOnGroups = {"fail"} )
+	@Test(description = "Skipped test" ,dependsOnGroups = {"failFireFox"})
 	public void skipTest() {
 		
 		Assert.assertEquals(1, 2);
 	}
 	
-//	@BeforeClass(alwaysRun = true, groups = {"local"})
-//	public void setupBeforeSuite(ITestContext context) {
-//		baseUrl = "http://localhost:8080/";
-//		
-//		try {
-//			
-//			browser = new FirefoxDriver();
-//			browser.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-//		}
-//		catch (Exception e) {
-//			throw new IllegalStateException("Can't start Web Driver", e);
-//		}
-//	}
-//	
-	@BeforeClass(alwaysRun = true, groups = {"remote"})
+	@BeforeClass(groups = {"localFireFox"})
+	public void setupBeforeSuite(ITestContext context) {
+		baseUrl = "http://localhost:8080/";
+		
+		try {
+			
+			browser = new FirefoxDriver();
+			browser.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		}
+		catch (Exception e) {
+			throw new IllegalStateException("Can't start Web Driver", e);
+		}
+	}
+	
+	@BeforeClass(groups = {"remoteFireFox"})
 	public void setupBeforeSuiteRemote(ITestContext context) {
 		capabilities = DesiredCapabilities.firefox();
 		capabilities.setJavascriptEnabled(true);

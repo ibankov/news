@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite hostname="ivan-pc" name="news.ui.SeleniumNGTest" tests="2" failures="0" timestamp="29 Sep 2015 08:32:35 GMT" time="5.571" errors="0">
-  <testcase name="invalidLoginTest" time="1.533" classname="news.ui.SeleniumNGTest"/>
-  <testcase name="loginTest" time="0.463" classname="news.ui.SeleniumNGTest"/>
-</testsuite>

@@ -53,26 +53,26 @@ public class ChromeTestNG {
 		Assert.assertEquals(browser.getCurrentUrl(), homePage.getUrl());
 	}
 	
-	@Test(description = "Failing test", groups = { "fail" })
+	@Test(description = "Failing test", groups = { "failChrome" })
 	public void failTest() {
 		
 		Assert.assertEquals(1, 2);
 	}
 	
-	@Test(description = "Skipped test", dependsOnGroups = { "fail" })
+	@Test(description = "Skipped test", dependsOnGroups = { "failChrome" })
 	public void skipTest() {
 		
 		Assert.assertEquals(1, 2);
 	}
 	
-//	@BeforeClass(alwaysRun = true,groups = {"local"})
-//	public void setupBeforeSuite(ITestContext context) {
-//		baseUrl = "http://localhost:8080/";
-//		browser = new ChromeDriver();
-//		
-//	}
+	@BeforeClass(groups = {"localChrome"})
+	public void setupBeforeSuite(ITestContext context) {
+		baseUrl = "http://localhost:8080/";
+		browser = new ChromeDriver();
+		
+	}
 	
-	@BeforeClass(alwaysRun = true,groups = {"remote"})
+	@BeforeClass(alwaysRun = true,groups = {"remoteChrome"})
 	public void setupBeforeSuiteRemote(ITestContext context) {
 		capabilities = DesiredCapabilities.chrome();
 		capabilities.setJavascriptEnabled(true);
